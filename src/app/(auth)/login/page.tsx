@@ -60,7 +60,7 @@ export default function LoginPage() {
         <div className="flex items-center justify-center mb-3">
           <Image src="/logo.png" alt="Swastik Tours Logo" width={64} height={64} className="object-contain rounded-xl" />
         </div>
-        <h1 className="text-3xl font-bold tracking-tight text-white">Welcome Back</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-white">ARVO</h1>
         <p className="text-zinc-400 text-sm mt-1">Sign in to your ARVO billing workspace</p>
       </div>
 
