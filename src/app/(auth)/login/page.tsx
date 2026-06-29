@@ -91,9 +91,14 @@ export default function LoginPage() {
         </div>
 
         <div>
-          <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider mb-2">
-            Password
-          </label>
+          <div className="flex items-center justify-between mb-2">
+            <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider">
+              Password
+            </label>
+            <Link href="/forgot-password" className="text-violet-500 hover:text-violet-400 text-xs font-medium transition-colors">
+              Forgot Password?
+            </Link>
+          </div>
           <div className="relative">
             <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[var(--text-muted)]">
               <Lock className="w-5 h-5" />
