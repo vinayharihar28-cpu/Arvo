@@ -20,6 +20,11 @@ import {
   Bell,
   User as UserIcon,
 } from "lucide-react";
+import Image from "next/image";
+
+const LogoIcon = () => (
+  <img src="/logo.png" alt="Logo" className="h-5 w-5 object-contain" />
+);
 
 interface Org {
   id: string;
@@ -102,7 +107,7 @@ export default function DashboardLayout({
   // Super Admins only manage the global platform console.
   // Standard clients only see their own workspace metrics and settings.
   if (profile?.is_super_admin) {
-    navItems.push({ name: "Super Admin", href: "/dashboard/admin", icon: ShieldAlert });
+    navItems.push({ name: "Super Admin", href: "/dashboard/admin", icon: LogoIcon });
   } else if (currentRole === "billing_agent") {
     navItems.push(
       { name: "Invoices", href: "/dashboard/invoices", icon: FileText }
@@ -126,9 +131,7 @@ export default function DashboardLayout({
         {/* Brand Header */}
         <div className="h-16 flex items-center px-6 border-b border-zinc-800">
           <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center font-bold text-white shadow-lg shadow-violet-600/30">
-              A
-            </div>
+            <Image src="/logo.png" alt="Logo" width={32} height={32} className="object-contain rounded-xl" />
             <span className="font-bold text-xl tracking-tight bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
               ARVO
             </span>
@@ -250,9 +253,7 @@ export default function DashboardLayout({
 
           {/* Org Name (for mobile) */}
           <div className="md:hidden flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-violet-600 flex items-center justify-center font-bold text-white text-xs">
-              A
-            </div>
+            <Image src="/logo.png" alt="Logo" width={28} height={28} className="object-contain rounded-xl" />
             <span className="font-semibold text-sm truncate max-w-[120px]">
               {profile?.is_super_admin ? "Super Admin" : (currentOrg ? currentOrg.name : "ARVO")}
             </span>
@@ -338,9 +339,7 @@ export default function DashboardLayout({
 
             {/* Brand Header */}
             <div className="flex items-center gap-2 mb-8 mt-2">
-              <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center font-bold text-white text-base">
-                A
-              </div>
+              <Image src="/logo.png" alt="Logo" width={32} height={32} className="object-contain rounded-xl" />
               <span className="font-bold text-xl tracking-tight text-white">ARVO</span>
             </div>
 

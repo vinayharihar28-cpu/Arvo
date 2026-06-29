@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
-import { Mail, Lock, ShieldCheck, Loader2 } from "lucide-react";
+import { Mail, Lock, Loader2 } from "lucide-react";
+import Image from "next/image";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -56,8 +57,8 @@ export default function LoginPage() {
     <div className="flex flex-col">
       {/* Brand logo & title */}
       <div className="flex flex-col items-center mb-8">
-        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-violet-600/10 border border-violet-500/20 text-violet-400 mb-3">
-          <ShieldCheck className="w-7 h-7" />
+        <div className="flex items-center justify-center mb-3">
+          <Image src="/logo.png" alt="Swastik Tours Logo" width={64} height={64} className="object-contain rounded-xl" />
         </div>
         <h1 className="text-3xl font-bold tracking-tight text-white">Welcome Back</h1>
         <p className="text-zinc-400 text-sm mt-1">Sign in to your ARVO billing workspace</p>
