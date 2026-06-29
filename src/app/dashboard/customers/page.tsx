@@ -166,8 +166,8 @@ export default function CustomersPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-white">Customer Manager</h1>
-          <p className="text-zinc-400 text-sm mt-1">Manage billing contacts, shipping/billing addresses, and customer GSTINs</p>
+          <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)]">Customer Manager</h1>
+          <p className="text-[var(--text-muted)] text-sm mt-1">Manage billing contacts, shipping/billing addresses, and customer GSTINs</p>
         </div>
 
         <button
@@ -180,9 +180,9 @@ export default function CustomersPage() {
       </div>
 
       {/* Toolbar */}
-      <div className="flex flex-col sm:flex-row gap-4 bg-zinc-900 border border-zinc-800 p-4 rounded-2xl">
+      <div className="flex flex-col sm:flex-row gap-4 bg-[var(--bg-surface)] border border-[var(--border-default)] p-4 rounded-2xl">
         <div className="relative flex-1">
-          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-zinc-500">
+          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[var(--text-muted)]">
             <Search className="w-4 h-4" />
           </span>
           <input
@@ -190,7 +190,7 @@ export default function CustomersPage() {
             placeholder="Search customers by name, email, phone or GSTIN..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 bg-zinc-950/80 border border-zinc-800/80 rounded-xl text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-violet-600 focus:border-transparent transition-all text-xs"
+            className="w-full pl-9 pr-4 py-2 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:ring-1 focus:ring-violet-600 focus:border-transparent transition-all text-xs"
           />
         </div>
       </div>
@@ -201,7 +201,7 @@ export default function CustomersPage() {
           filteredCustomers.map((c) => (
             <div
               key={c.id}
-              className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-zinc-700/60 transition-all flex flex-col justify-between space-y-4"
+              className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl p-6 hover:border-[var(--border-strong)] transition-all flex flex-col justify-between space-y-4"
             >
               <div className="space-y-3">
                 {/* Header */}
@@ -211,13 +211,13 @@ export default function CustomersPage() {
                       {c.name.charAt(0)}
                     </div>
                     <div>
-                      <h3 className="font-semibold text-white text-base">{c.name}</h3>
+                      <h3 className="font-semibold text-[var(--text-primary)] text-base">{c.name}</h3>
                       {c.gst_number ? (
                         <span className="inline-block text-[10px] uppercase font-bold tracking-wider text-violet-400 bg-violet-600/10 border border-violet-500/20 px-2 py-0.5 rounded-md mt-1 font-mono">
                           GSTIN: {c.gst_number}
                         </span>
                       ) : (
-                        <span className="inline-block text-[10px] text-zinc-500 font-semibold mt-1">
+                        <span className="inline-block text-[10px] text-[var(--text-muted)] font-semibold mt-1">
                           Consumer / No GSTIN
                         </span>
                       )}
@@ -226,24 +226,24 @@ export default function CustomersPage() {
                 </div>
 
                 {/* Details */}
-                <div className="space-y-2 pt-2 border-t border-zinc-800 text-sm text-zinc-400">
+                <div className="space-y-2 pt-2 border-t border-[var(--border-default)] text-sm text-[var(--text-secondary)]">
                   {c.email && (
                     <div className="flex items-center gap-2">
-                      <Mail className="w-4 h-4 text-zinc-500" />
-                      <a href={`mailto:${c.email}`} className="hover:text-zinc-200 transition-colors truncate">
+                      <Mail className="w-4 h-4 text-[var(--text-muted)]" />
+                      <a href={`mailto:${c.email}`} className="hover:text-[var(--text-primary)] transition-colors truncate">
                         {c.email}
                       </a>
                     </div>
                   )}
                   {c.phone && (
                     <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4 text-zinc-500" />
+                      <Phone className="w-4 h-4 text-[var(--text-muted)]" />
                       <span>{c.phone}</span>
                     </div>
                   )}
                   {c.address && (
                     <div className="flex items-start gap-2">
-                      <MapPin className="w-4 h-4 text-zinc-500 shrink-0 mt-0.5" />
+                      <MapPin className="w-4 h-4 text-[var(--text-muted)] shrink-0 mt-0.5" />
                       <span className="line-clamp-2 leading-relaxed">{c.address}</span>
                     </div>
                   )}
@@ -251,10 +251,10 @@ export default function CustomersPage() {
               </div>
 
               {/* Actions */}
-              <div className="flex justify-end gap-2 pt-4 border-t border-zinc-800">
+              <div className="flex justify-end gap-2 pt-4 border-t border-[var(--border-default)]">
                 <button
                   onClick={() => openModal(c)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-zinc-850 hover:bg-zinc-800 text-zinc-300 text-xs rounded-lg transition-colors border border-zinc-800/80 cursor-pointer"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--bg-surface-alt)] hover:bg-[var(--bg-base)] text-[var(--text-secondary)] text-xs rounded-lg transition-colors border border-[var(--border-default)] cursor-pointer"
                 >
                   <Edit2 className="w-3.5 h-3.5" />
                   Edit
@@ -270,7 +270,7 @@ export default function CustomersPage() {
             </div>
           ))
         ) : (
-          <div className="md:col-span-2 bg-zinc-900 border border-zinc-800 rounded-2xl p-12 text-center text-zinc-500 text-xs italic">
+          <div className="md:col-span-2 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl p-12 text-center text-[var(--text-muted)] text-xs italic">
             No customers found. Click Add Customer to add your first client contact!
           </div>
         )}
@@ -279,101 +279,50 @@ export default function CustomersPage() {
       {/* CREATE & EDIT CUSTOMER MODAL */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/75 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
-              <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+          <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between border-b border-[var(--border-default)] pb-3">
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] flex items-center gap-2">
                 <Users className="w-5 h-5 text-violet-400" />
                 {editingCustomer ? "Edit Customer Details" : "Add New Customer"}
               </h3>
               <button
                 onClick={closeModal}
-                className="text-zinc-500 hover:text-white text-xs cursor-pointer"
+                className="text-[var(--text-muted)] hover:text-[var(--text-primary)] text-xs cursor-pointer"
               >
                 Cancel
               </button>
             </div>
             <form onSubmit={handleSaveCustomer} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Full Name */}
                 <div className="sm:col-span-2">
-                  <label className="block text-zinc-400 text-xs font-medium mb-1.5">Customer / Business Name</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Ramesh Travels or Suresh Sharma"
-                    value={custName}
-                    onChange={(e) => setCustName(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-1 focus:ring-violet-600 focus:border-transparent text-sm"
-                  />
+                  <label className="block text-[var(--text-secondary)] text-xs font-medium mb-1.5">Customer / Business Name</label>
+                  <input type="text" required placeholder="e.g. Ramesh Travels or Suresh Sharma" value={custName} onChange={(e) => setCustName(e.target.value)}
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-1 focus:ring-violet-600 focus:border-transparent text-sm" />
                 </div>
-
-                {/* Email */}
                 <div>
-                  <label className="block text-zinc-400 text-xs font-medium mb-1.5 flex items-center gap-1">
-                    <Mail className="w-3.5 h-3.5" /> Email Address
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="name@example.com"
-                    value={custEmail}
-                    onChange={(e) => setCustEmail(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-1 focus:ring-violet-600 focus:border-transparent text-sm"
-                  />
+                  <label className="block text-[var(--text-secondary)] text-xs font-medium mb-1.5 flex items-center gap-1"><Mail className="w-3.5 h-3.5" /> Email Address</label>
+                  <input type="email" placeholder="name@example.com" value={custEmail} onChange={(e) => setCustEmail(e.target.value)}
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-1 focus:ring-violet-600 focus:border-transparent text-sm" />
                 </div>
-
-                {/* Phone */}
                 <div>
-                  <label className="block text-zinc-400 text-xs font-medium mb-1.5 flex items-center gap-1">
-                    <Phone className="w-3.5 h-3.5" /> Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    placeholder="e.g. +91 99887 76655"
-                    value={custPhone}
-                    onChange={(e) => setCustPhone(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-1 focus:ring-violet-600 focus:border-transparent text-sm"
-                  />
+                  <label className="block text-[var(--text-secondary)] text-xs font-medium mb-1.5 flex items-center gap-1"><Phone className="w-3.5 h-3.5" /> Phone Number</label>
+                  <input type="tel" placeholder="e.g. +91 99887 76655" value={custPhone} onChange={(e) => setCustPhone(e.target.value)}
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-1 focus:ring-violet-600 focus:border-transparent text-sm" />
                 </div>
-
-                {/* GST Number */}
                 <div className="sm:col-span-2">
-                  <label className="block text-zinc-400 text-xs font-medium mb-1.5 flex items-center gap-1">
-                    <Hash className="w-3.5 h-3.5" /> Customer GSTIN
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. 27AAAAA1111A1Z1 (Leave blank if unregistered)"
-                    value={custGst}
-                    onChange={(e) => setCustGst(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-1 focus:ring-violet-600 focus:border-transparent text-sm"
-                  />
+                  <label className="block text-[var(--text-secondary)] text-xs font-medium mb-1.5 flex items-center gap-1"><Hash className="w-3.5 h-3.5" /> Customer GSTIN</label>
+                  <input type="text" placeholder="e.g. 27AAAAA1111A1Z1 (Leave blank if unregistered)" value={custGst} onChange={(e) => setCustGst(e.target.value)}
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-1 focus:ring-violet-600 focus:border-transparent text-sm" />
                 </div>
-
-                {/* Address */}
                 <div className="sm:col-span-2">
-                  <label className="block text-zinc-400 text-xs font-medium mb-1.5 flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5" /> Billing Address
-                  </label>
-                  <textarea
-                    rows={3}
-                    placeholder="Full invoice billing/shipping address..."
-                    value={custAddress}
-                    onChange={(e) => setCustAddress(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-1 focus:ring-violet-600 focus:border-transparent text-sm"
-                  />
+                  <label className="block text-[var(--text-secondary)] text-xs font-medium mb-1.5 flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> Billing Address</label>
+                  <textarea rows={3} placeholder="Full invoice billing/shipping address..." value={custAddress} onChange={(e) => setCustAddress(e.target.value)}
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-1 focus:ring-violet-600 focus:border-transparent text-sm" />
                 </div>
               </div>
-
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full flex items-center justify-center gap-2 py-2.5 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl text-sm transition-all"
-              >
-                {isLoading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <Save className="w-4.5 h-4.5" />
-                )}
+              <button type="submit" disabled={isLoading}
+                className="w-full flex items-center justify-center gap-2 py-2.5 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl text-sm transition-all">
+                {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                 Save Customer
               </button>
             </form>

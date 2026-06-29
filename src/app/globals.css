@@ -1,56 +1,100 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+/* ── Tailwind v4: class-based dark mode ──────────────────────── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Light theme (default) ───────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* surfaces */
+  --bg-base:        #f4f4f5;
+  --bg-surface:     #ffffff;
+  --bg-surface-alt: #f8f8fa;
+  --bg-input:       #ffffff;
+  /* borders */
+  --border-default: #e4e4e7;
+  --border-strong:  #d4d4d8;
+  /* text */
+  --text-primary:   #18181b;
+  --text-secondary: #52525b;
+  --text-muted:     #a1a1aa;
+  /* sidebar */
+  --sidebar-bg:     #ffffff;
+  --sidebar-border: #e4e4e7;
+  /* header */
+  --header-bg:      rgba(255,255,255,0.85);
+  /* scrollbar */
+  --scrollbar-thumb: #d4d4d8;
+}
+
+/* ── Dark theme ──────────────────────────────────────────────── */
+.dark {
+  --bg-base:        #09090b;
+  --bg-surface:     #18181b;
+  --bg-surface-alt: #09090b;
+  --bg-input:       rgba(9,9,11,0.8);
+  --border-default: #27272a;
+  --border-strong:  #3f3f46;
+  --text-primary:   #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --text-muted:     #71717a;
+  --sidebar-bg:     #18181b;
+  --sidebar-border: #27272a;
+  --header-bg:      rgba(24,24,27,0.85);
+  --scrollbar-thumb: #3f3f46;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg-base);
+  --color-foreground: var(--text-primary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg-base);
+  color: var(--text-primary);
   font-family: 'Inter', sans-serif;
+  transition: background 0.2s, color 0.2s;
 }
 
-/* Hide number input arrows globally */
+/* ── Hide number input arrows globally ───────────────────────── */
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 input[type='number'] {
-  -moz-appearance: textfield; /* Firefox */
+  -moz-appearance: textfield;
 }
 
-/* Install button styling */
+/* ── Install / PWA button ────────────────────────────────────── */
 .install-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(124, 58, 237, 0.85);
   backdrop-filter: blur(10px);
-  border: none;
+  border: 1px solid rgba(139,92,246,0.3);
   border-radius: 12px;
   padding: 12px 24px;
   color: #fff;
   font-family: 'Inter', sans-serif;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 9999;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 24px rgba(124,58,237,0.25);
 }
 .install-btn:hover {
   transform: scale(1.05);
+  box-shadow: 0 8px 32px rgba(124,58,237,0.35);
+}
+
+/* ── Smooth theme transition ─────────────────────────────────── */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 150ms;
+  transition-timing-function: ease;
 }
