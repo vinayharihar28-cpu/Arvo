@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
@@ -299,7 +299,7 @@ export default function AdminPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center text-zinc-400 font-sans">
+      <div className="min-h-[60vh] flex items-center justify-center text-[var(--text-secondary)] font-sans">
         <Loader2 className="w-8 h-8 animate-spin text-violet-400" />
       </div>
     );
@@ -309,36 +309,36 @@ export default function AdminPage() {
     <div className="space-y-8 max-w-6xl mx-auto font-sans">
       {/* Title */}
       <div>
-        <h1 className="text-3xl font-bold tracking-tight text-white">SaaS Console (Super Admin)</h1>
-        <p className="text-zinc-400 text-sm mt-1">Manage global multi-tenant workspaces, approve user access, and delegate roles</p>
+        <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)]">SaaS Console (Super Admin)</h1>
+        <p className="text-[var(--text-secondary)] text-sm mt-1">Manage global multi-tenant workspaces, approve user access, and delegate roles</p>
       </div>
 
       {/* Overview Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="bg-zinc-900 border border-zinc-800 p-5 rounded-2xl flex items-center justify-between shadow-xl">
+        <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] p-5 rounded-2xl flex items-center justify-between shadow-xl">
           <div>
-            <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Total Organizations</p>
-            <h3 className="text-3xl font-bold text-white mt-1">{organizations.length}</h3>
+            <p className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">Total Organizations</p>
+            <h3 className="text-3xl font-bold text-[var(--text-primary)] mt-1">{organizations.length}</h3>
           </div>
           <div className="p-3 rounded-xl bg-violet-600/10 border border-violet-500/20 text-violet-400">
             <Building className="w-6 h-6" />
           </div>
         </div>
 
-        <div className="bg-zinc-900 border border-zinc-800 p-5 rounded-2xl flex items-center justify-between shadow-xl">
+        <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] p-5 rounded-2xl flex items-center justify-between shadow-xl">
           <div>
-            <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Active SaaS Users</p>
-            <h3 className="text-3xl font-bold text-white mt-1">{users.length}</h3>
+            <p className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">Active SaaS Users</p>
+            <h3 className="text-3xl font-bold text-[var(--text-primary)] mt-1">{users.length}</h3>
           </div>
           <div className="p-3 rounded-xl bg-indigo-600/10 border border-indigo-500/20 text-indigo-400">
             <Users className="w-6 h-6" />
           </div>
         </div>
 
-        <div className="bg-zinc-900 border border-zinc-800 p-5 rounded-2xl flex items-center justify-between sm:col-span-2 lg:col-span-1 shadow-xl">
+        <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] p-5 rounded-2xl flex items-center justify-between sm:col-span-2 lg:col-span-1 shadow-xl">
           <div>
-            <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">System Administrators</p>
-            <h3 className="text-3xl font-bold text-white mt-1">
+            <p className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">System Administrators</p>
+            <h3 className="text-3xl font-bold text-[var(--text-primary)] mt-1">
               {users.filter((u) => u.is_super_admin).length}
             </h3>
           </div>
@@ -352,13 +352,13 @@ export default function AdminPage() {
         {/* Left Side: Create Org & List Orgs */}
         <div className="lg:col-span-2 space-y-8">
           {/* Organizations Table */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
-            <div className="px-6 py-4 border-b border-zinc-800">
-              <h2 className="text-lg font-semibold text-white">Active Organizations</h2>
+          <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl overflow-hidden shadow-xl">
+            <div className="px-6 py-4 border-b border-[var(--border-default)]">
+              <h2 className="text-lg font-semibold text-[var(--text-primary)]">Active Organizations</h2>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm text-zinc-300">
-                <thead className="text-xs uppercase bg-zinc-950/40 text-zinc-500 border-b border-zinc-800">
+              <table className="w-full text-left text-sm text-[var(--text-secondary)]">
+                <thead className="text-xs uppercase bg-[var(--bg-input)] text-[var(--text-muted)] border-b border-[var(--border-default)]">
                   <tr>
                     <th className="px-6 py-3.5 font-semibold">Workspace Name</th>
                     <th className="px-6 py-3.5 font-semibold">GSTIN</th>
@@ -366,37 +366,37 @@ export default function AdminPage() {
                     <th className="px-6 py-3.5 font-semibold text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-zinc-800/65">
+                <tbody className="divide-y divide-[var(--border-default)]">
                   {organizations.length === 0 ? (
                     <tr>
-                      <td colSpan={4} className="px-6 py-10 text-center text-zinc-500 text-sm">
+                      <td colSpan={4} className="px-6 py-10 text-center text-[var(--text-muted)] text-sm">
                         No active workspaces found.
                       </td>
                     </tr>
                   ) : (
                     organizations.map((org) => (
-                      <tr key={org.id} className="hover:bg-zinc-800/10 transition-colors">
+                      <tr key={org.id} className="hover:bg-[var(--bg-surface-alt)] transition-colors">
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400 shrink-0">
+                            <div className="w-8 h-8 rounded-lg bg-[var(--bg-surface-alt)] flex items-center justify-center text-[var(--text-secondary)] shrink-0">
                               <Building2 className="w-4 h-4" />
                             </div>
                             <div>
-                              <p className="font-medium text-white">{org.name}</p>
-                              <p className="text-[10px] text-zinc-500">Created: {org.created_at}</p>
+                              <p className="font-medium text-[var(--text-primary)]">{org.name}</p>
+                              <p className="text-[10px] text-[var(--text-muted)]">Created: {org.created_at}</p>
                             </div>
                           </div>
                         </td>
                         <td className="px-6 py-4 font-mono text-xs">{org.gst_number || "N/A"}</td>
                         <td className="px-6 py-4">
-                          <span className="text-xs font-semibold px-2 py-0.5 rounded bg-zinc-850 border border-zinc-800 text-zinc-400">
+                          <span className="text-xs font-semibold px-2 py-0.5 rounded bg-[var(--bg-surface-alt)] border border-[var(--border-default)] text-[var(--text-secondary)]">
                             {org.members_count} members
                           </span>
                         </td>
                         <td className="px-6 py-4 text-right">
                           <button
                             onClick={() => handleDeleteOrg(org.id, org.name)}
-                            className="p-1.5 rounded-lg text-zinc-500 hover:text-red-400 hover:bg-red-500/5 transition-all cursor-pointer"
+                            className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-red-400 hover:bg-red-500/5 transition-all cursor-pointer"
                             title="Delete Workspace"
                           >
                             <Trash2 className="w-4.5 h-4.5" />
@@ -411,13 +411,13 @@ export default function AdminPage() {
           </div>
 
           {/* Users Directory */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
-            <div className="px-6 py-4 border-b border-zinc-800">
-              <h2 className="text-lg font-semibold text-white">Global User Access Control</h2>
+          <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl overflow-hidden shadow-xl">
+            <div className="px-6 py-4 border-b border-[var(--border-default)]">
+              <h2 className="text-lg font-semibold text-[var(--text-primary)]">Global User Access Control</h2>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm text-zinc-300">
-                <thead className="text-xs uppercase bg-zinc-950/40 text-zinc-500 border-b border-zinc-800">
+              <table className="w-full text-left text-sm text-[var(--text-secondary)]">
+                <thead className="text-xs uppercase bg-[var(--bg-input)] text-[var(--text-muted)] border-b border-[var(--border-default)]">
                   <tr>
                     <th className="px-6 py-3.5 font-semibold">User</th>
                     <th className="px-6 py-3.5 font-semibold">Workspace</th>
@@ -426,23 +426,23 @@ export default function AdminPage() {
                     <th className="px-6 py-3.5 font-semibold text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-zinc-800/65">
+                <tbody className="divide-y divide-[var(--border-default)]">
                   {users.length === 0 ? (
                     <tr>
-                      <td colSpan={5} className="px-6 py-10 text-center text-zinc-500 text-sm">
+                      <td colSpan={5} className="px-6 py-10 text-center text-[var(--text-muted)] text-sm">
                         No registered users found.
                       </td>
                     </tr>
                   ) : (
                     users.map((user) => (
-                      <tr key={user.id} className="hover:bg-zinc-800/10 transition-colors">
+                      <tr key={user.id} className="hover:bg-[var(--bg-surface-alt)] transition-colors">
                         <td className="px-6 py-4">
                           <div>
-                            <p className="font-medium text-white">{user.full_name}</p>
-                            <p className="text-xs text-zinc-400">{user.email}</p>
+                            <p className="font-medium text-[var(--text-primary)]">{user.full_name}</p>
+                            <p className="text-xs text-[var(--text-secondary)]">{user.email}</p>
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-zinc-400">{user.organization_name}</td>
+                        <td className="px-6 py-4 text-[var(--text-secondary)]">{user.organization_name}</td>
                         <td className="px-6 py-4">
                           <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${
                             user.is_approved
@@ -466,7 +466,7 @@ export default function AdminPage() {
                           <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${
                             user.is_super_admin
                               ? "bg-purple-500/15 text-purple-400 border border-purple-500/20"
-                              : "bg-zinc-850 text-zinc-500 border border-zinc-800"
+                              : "bg-[var(--bg-surface-alt)] text-[var(--text-muted)] border border-[var(--border-default)]"
                           }`}>
                             {user.is_super_admin ? "Yes" : "No"}
                           </span>
@@ -477,7 +477,7 @@ export default function AdminPage() {
                             {["vinayharihar28@gmail.com", "hvinay225@gmail.com", "admin@arvo.com"].includes(user.email.toLowerCase()) ? (
                               <button
                                 disabled
-                                className="flex items-center gap-1 px-2.5 py-1 text-xs rounded-lg border border-zinc-800 text-zinc-600 bg-zinc-950/20 cursor-not-allowed font-medium"
+                                className="flex items-center gap-1 px-2.5 py-1 text-xs rounded-lg border border-[var(--border-default)] text-[var(--text-muted)] bg-[var(--bg-input)] cursor-not-allowed font-medium"
                               >
                                 Platform Admin
                               </button>
@@ -488,7 +488,7 @@ export default function AdminPage() {
                                   className={`flex items-center gap-1 px-2.5 py-1 text-xs rounded-lg border transition-all cursor-pointer ${
                                     user.is_approved
                                       ? "bg-emerald-950/20 border-emerald-800 text-emerald-400 hover:bg-emerald-900/20"
-                                      : "bg-zinc-950 border-zinc-800 text-zinc-450 hover:text-white"
+                                      : "bg-[var(--bg-input)] border-[var(--border-default)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                                   }`}
                                   title={user.is_approved ? "Revoke Dashboard Access" : "Grant Dashboard Access"}
                                 >
@@ -501,7 +501,7 @@ export default function AdminPage() {
                                   className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
                                     user.is_super_admin
                                       ? "bg-purple-500/5 border-purple-500/10 text-purple-400 hover:bg-purple-500/10"
-                                      : "border-transparent text-zinc-500 hover:text-purple-400 hover:bg-purple-500/5"
+                                      : "border-transparent text-[var(--text-muted)] hover:text-purple-400 hover:bg-purple-500/5"
                                   }`}
                                   title={user.is_super_admin ? "Revoke Super Admin Privilege" : "Grant Super Admin Privilege"}
                                 >
@@ -520,22 +520,22 @@ export default function AdminPage() {
           </div>
 
           {/* Workspace Team & RBAC Management */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl space-y-6 p-6">
-            <div className="border-b border-zinc-850 pb-4">
-              <h2 className="text-lg font-semibold text-white">Workspace Members & RBAC</h2>
-              <p className="text-xs text-zinc-400 mt-1">Manage team members and roles for a specific organization</p>
+          <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl overflow-hidden shadow-xl space-y-6 p-6">
+            <div className="border-b border-[var(--border-default)] pb-4">
+              <h2 className="text-lg font-semibold text-[var(--text-primary)]">Workspace Members & RBAC</h2>
+              <p className="text-xs text-[var(--text-secondary)] mt-1">Manage team members and roles for a specific organization</p>
             </div>
 
             {/* Select Organization */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-zinc-400 text-xs font-semibold uppercase tracking-wider mb-2">
+                <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider mb-2">
                   Select Organization
                 </label>
                 <select
                   value={selectedOrgId}
                   onChange={(e) => setSelectedOrgId(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
+                  className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
                 >
                   <option value="">-- Choose Workspace --</option>
                   {organizations.map((org) => (
@@ -550,11 +550,11 @@ export default function AdminPage() {
             {selectedOrgId ? (
               <div className="space-y-6 pt-2">
                 {/* Invite Member to Selected Org Form */}
-                <div className="bg-zinc-950/40 border border-zinc-800 rounded-xl p-4">
-                  <h3 className="text-sm font-semibold text-white mb-3">Add Member to Selected Workspace</h3>
+                <div className="bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl p-4">
+                  <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-3">Add Member to Selected Workspace</h3>
                   <form onSubmit={handleAddOrgMember} className="flex flex-col sm:flex-row gap-4 items-end">
                     <div className="flex-1 min-w-[200px] w-full">
-                      <label className="block text-zinc-450 text-xs font-medium mb-1.5">
+                      <label className="block text-[var(--text-secondary)] text-xs font-medium mb-1.5">
                         User Email Address
                       </label>
                       <input
@@ -563,18 +563,18 @@ export default function AdminPage() {
                         onChange={(e) => setInviteEmail(e.target.value)}
                         required
                         placeholder="member@company.com"
-                        className="w-full px-4 py-2 bg-zinc-950 border border-zinc-850 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-xs"
+                        className="w-full px-4 py-2 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-xs"
                       />
                     </div>
 
                     <div className="w-full sm:w-48">
-                      <label className="block text-zinc-450 text-xs font-medium mb-1.5">
+                      <label className="block text-[var(--text-secondary)] text-xs font-medium mb-1.5">
                         Access Role
                       </label>
                       <select
                         value={inviteRole}
                         onChange={(e) => setInviteRole(e.target.value)}
-                        className="w-full px-4 py-2 bg-zinc-950 border border-zinc-850 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-xs"
+                        className="w-full px-4 py-2 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-xs"
                       >
                         <option value="owner">Owner (Full Permissions)</option>
                         <option value="admin">Admin (Manage settings & users)</option>
@@ -585,7 +585,7 @@ export default function AdminPage() {
                     <button
                       type="submit"
                       disabled={isInviteSubmitting}
-                      className="w-full sm:w-auto flex items-center justify-center gap-2 py-2 px-5 bg-violet-600 hover:bg-violet-500 text-white font-medium rounded-lg transition-all text-xs active:scale-[0.98] disabled:opacity-50 cursor-pointer"
+                      className="w-full sm:w-auto flex items-center justify-center gap-2 py-2 px-5 bg-violet-600 hover:bg-violet-500 text-[var(--text-primary)] font-medium rounded-lg transition-all text-xs active:scale-[0.98] disabled:opacity-50 cursor-pointer"
                     >
                       {isInviteSubmitting ? (
                         <>
@@ -600,37 +600,37 @@ export default function AdminPage() {
                 </div>
 
                 {/* Workspace Members Table */}
-                <div className="border border-zinc-850 rounded-xl overflow-hidden">
+                <div className="border border-[var(--border-default)] rounded-xl overflow-hidden">
                   <div className="overflow-x-auto">
-                    <table className="w-full text-left text-sm text-zinc-300">
-                      <thead className="text-xs uppercase bg-zinc-950/60 text-zinc-550 border-b border-zinc-850">
+                    <table className="w-full text-left text-sm text-[var(--text-secondary)]">
+                      <thead className="text-xs uppercase bg-[var(--bg-input)] text-[var(--text-muted)] border-b border-[var(--border-default)]">
                         <tr>
                           <th className="px-4 py-3 font-semibold">User</th>
                           <th className="px-4 py-3 font-semibold">Role</th>
                           <th className="px-4 py-3 font-semibold text-right">Actions</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-zinc-850/65">
+                      <tbody className="divide-y divide-[var(--border-default)]">
                         {orgMembers.length === 0 ? (
                           <tr>
-                            <td colSpan={3} className="px-4 py-6 text-center text-zinc-500 text-xs">
+                            <td colSpan={3} className="px-4 py-6 text-center text-[var(--text-muted)] text-xs">
                               No members in this organization yet.
                             </td>
                           </tr>
                         ) : (
                           orgMembers.map((member) => (
-                            <tr key={member.id} className="hover:bg-zinc-800/5 transition-colors">
+                            <tr key={member.id} className="hover:bg-[var(--bg-surface-alt)] transition-colors">
                               <td className="px-4 py-3">
                                 <div>
-                                  <p className="font-medium text-white text-xs">{member.profiles?.full_name || "N/A"}</p>
-                                  <p className="text-[10px] text-zinc-450">{member.profiles?.email}</p>
+                                  <p className="font-medium text-[var(--text-primary)] text-xs">{member.profiles?.full_name || "N/A"}</p>
+                                  <p className="text-[10px] text-[var(--text-secondary)]">{member.profiles?.email}</p>
                                 </div>
                               </td>
                               <td className="px-4 py-3">
                                 <select
                                   value={member.role}
                                   onChange={(e) => handleUpdateMemberRole(member.id, e.target.value)}
-                                  className="px-2 py-1 bg-zinc-950 border border-zinc-850 rounded text-zinc-350 focus:outline-none text-[11px] cursor-pointer"
+                                  className="px-2 py-1 bg-[var(--bg-input)] border border-[var(--border-default)] rounded text-zinc-350 focus:outline-none text-[11px] cursor-pointer"
                                 >
                                   <option value="owner">Owner</option>
                                   <option value="admin">Admin</option>
@@ -640,7 +640,7 @@ export default function AdminPage() {
                               <td className="px-4 py-3 text-right">
                                 <button
                                   onClick={() => handleRemoveOrgMember(member.id, member.profiles?.full_name || "Member")}
-                                  className="p-1 rounded text-zinc-500 hover:text-red-400 hover:bg-red-500/5 transition-all cursor-pointer"
+                                  className="p-1 rounded text-[var(--text-muted)] hover:text-red-400 hover:bg-red-500/5 transition-all cursor-pointer"
                                   title="Remove Member"
                                 >
                                   <Trash2 className="w-3.5 h-3.5" />
@@ -655,28 +655,28 @@ export default function AdminPage() {
                 </div>
               </div>
             ) : (
-              <p className="text-zinc-500 text-xs italic text-center py-6">Please select an organization to manage its members.</p>
+              <p className="text-[var(--text-muted)] text-xs italic text-center py-6">Please select an organization to manage its members.</p>
             )}
           </div>
         </div>
 
         {/* Right Side: Quick Actions Form */}
         <div className="space-y-8">
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 shadow-xl space-y-4">
+          <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl p-6 shadow-xl space-y-4">
             <div>
-              <h2 className="text-lg font-semibold text-white flex items-center gap-2">
+              <h2 className="text-lg font-semibold text-[var(--text-primary)] flex items-center gap-2">
                 <Plus className="w-5 h-5 text-violet-400" />
                 Provision Tenant
               </h2>
-              <p className="text-xs text-zinc-500 mt-1">Simultaneously create workspace and register pre-approved owner</p>
+              <p className="text-xs text-[var(--text-muted)] mt-1">Simultaneously create workspace and register pre-approved owner</p>
             </div>
             
             <form onSubmit={handleCreateOrg} className="space-y-4 pt-2">
               {/* Workspace Details */}
-              <div className="space-y-3 pb-3 border-b border-zinc-800">
-                <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Workspace details</h3>
+              <div className="space-y-3 pb-3 border-b border-[var(--border-default)]">
+                <h3 className="text-xs font-bold text-[var(--text-secondary)] uppercase tracking-wider">Workspace details</h3>
                 <div>
-                  <label className="block text-zinc-500 text-[10px] font-semibold uppercase tracking-wider mb-1.5">
+                  <label className="block text-[var(--text-muted)] text-[10px] font-semibold uppercase tracking-wider mb-1.5">
                     Organization Name *
                   </label>
                   <input
@@ -685,12 +685,12 @@ export default function AdminPage() {
                     onChange={(e) => setNewOrgName(e.target.value)}
                     required
                     placeholder="e.g. Swastik Tours"
-                    className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-zinc-500 text-[10px] font-semibold uppercase tracking-wider mb-1.5">
+                  <label className="block text-[var(--text-muted)] text-[10px] font-semibold uppercase tracking-wider mb-1.5">
                     GSTIN / Tax ID
                   </label>
                   <input
@@ -698,16 +698,16 @@ export default function AdminPage() {
                     value={newOrgGstin}
                     onChange={(e) => setNewOrgGstin(e.target.value)}
                     placeholder="e.g. 29AAAAA0000A1Z5"
-                    className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
                   />
                 </div>
               </div>
 
               {/* Owner Account Details */}
               <div className="space-y-3">
-                <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Owner Account</h3>
+                <h3 className="text-xs font-bold text-[var(--text-secondary)] uppercase tracking-wider">Owner Account</h3>
                 <div>
-                  <label className="block text-zinc-500 text-[10px] font-semibold uppercase tracking-wider mb-1.5">
+                  <label className="block text-[var(--text-muted)] text-[10px] font-semibold uppercase tracking-wider mb-1.5">
                     Full Name *
                   </label>
                   <input
@@ -716,12 +716,12 @@ export default function AdminPage() {
                     onChange={(e) => setOwnerName(e.target.value)}
                     required
                     placeholder="e.g. Rajesh Kumar"
-                    className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-zinc-500 text-[10px] font-semibold uppercase tracking-wider mb-1.5">
+                  <label className="block text-[var(--text-muted)] text-[10px] font-semibold uppercase tracking-wider mb-1.5">
                     Email Address *
                   </label>
                   <input
@@ -730,12 +730,12 @@ export default function AdminPage() {
                     onChange={(e) => setOwnerEmail(e.target.value)}
                     required
                     placeholder="e.g. owner@swastiktours.com"
-                    className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-zinc-500 text-[10px] font-semibold uppercase tracking-wider mb-1.5">
+                  <label className="block text-[var(--text-muted)] text-[10px] font-semibold uppercase tracking-wider mb-1.5">
                     Password *
                   </label>
                   <input
@@ -744,7 +744,7 @@ export default function AdminPage() {
                     onChange={(e) => setOwnerPassword(e.target.value)}
                     required
                     placeholder="Min 6 characters"
-                    className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
                   />
                 </div>
               </div>
@@ -752,7 +752,7 @@ export default function AdminPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center gap-2 py-2.5 bg-violet-600 hover:bg-violet-500 text-white font-medium rounded-xl transition-all shadow-md active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer text-sm"
+                className="w-full flex items-center justify-center gap-2 py-2.5 bg-violet-600 hover:bg-violet-500 text-[var(--text-primary)] font-medium rounded-xl transition-all shadow-md active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer text-sm"
               >
                 {isSubmitting ? (
                   <>
@@ -770,3 +770,4 @@ export default function AdminPage() {
     </div>
   );
 }
+

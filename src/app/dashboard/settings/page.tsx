@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
@@ -266,19 +266,19 @@ export default function SettingsPage() {
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Title */}
       <div>
-        <h1 className="text-3xl font-bold tracking-tight text-white">Workspace Settings</h1>
-        <p className="text-zinc-400 text-sm mt-1">Manage your business profile details and team access</p>
+        <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)]">Workspace Settings</h1>
+        <p className="text-[var(--text-secondary)] text-sm mt-1">Manage your business profile details and team access</p>
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-zinc-800">
+      <div className="flex border-b border-[var(--border-default)]">
         {(isSuperAdmin || userRole === "owner" || userRole === "admin") && (
           <button
             onClick={() => setActiveTab("general")}
             className={`flex items-center gap-2 px-6 py-3 border-b-2 font-medium text-sm transition-colors cursor-pointer ${
               activeTab === "general"
-                ? "border-violet-500 text-white"
-                : "border-transparent text-zinc-400 hover:text-zinc-200"
+                ? "border-violet-500 text-[var(--text-primary)]"
+                : "border-transparent text-[var(--text-secondary)] hover:text-[var(--text-secondary)]"
             }`}
           >
             <Building2 className="w-4.5 h-4.5" />
@@ -289,8 +289,8 @@ export default function SettingsPage() {
           onClick={() => setActiveTab("team")}
           className={`flex items-center gap-2 px-6 py-3 border-b-2 font-medium text-sm transition-colors cursor-pointer ${
             activeTab === "team" || (!(isSuperAdmin || userRole === "owner" || userRole === "admin") && activeTab === "general")
-              ? "border-violet-500 text-white"
-              : "border-transparent text-zinc-400 hover:text-zinc-200"
+              ? "border-violet-500 text-[var(--text-primary)]"
+              : "border-transparent text-[var(--text-secondary)] hover:text-[var(--text-secondary)]"
           }`}
         >
           <Users className="w-4.5 h-4.5" />
@@ -300,15 +300,15 @@ export default function SettingsPage() {
 
       {/* General Settings Tab */}
       {activeTab === "general" && (isSuperAdmin || userRole === "owner" || userRole === "admin") && (
-        <form onSubmit={handleSaveGeneral} className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 sm:p-8 space-y-6">
+        <form onSubmit={handleSaveGeneral} className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl p-6 sm:p-8 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Business Name */}
             <div>
-              <label className="block text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-2">
+              <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider mb-2">
                 Business / Company Name
               </label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-zinc-500">
+                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[var(--text-muted)]">
                   <Building2 className="w-5 h-5" />
                 </span>
                 <input
@@ -317,18 +317,18 @@ export default function SettingsPage() {
                   onChange={(e) => setBusinessName(e.target.value)}
                   required
                   placeholder="e.g. Swastik Tours"
-                  className="w-full pl-10 pr-4 py-2.5 bg-zinc-950/80 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all"
                 />
               </div>
             </div>
 
             {/* GST Number */}
             <div>
-              <label className="block text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-2">
+              <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider mb-2">
                 GSTIN / Tax Number
               </label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-zinc-500">
+                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[var(--text-muted)]">
                   <Hash className="w-5 h-5" />
                 </span>
                 <input
@@ -336,18 +336,18 @@ export default function SettingsPage() {
                   value={gstin}
                   onChange={(e) => setGstin(e.target.value)}
                   placeholder="e.g. 27AAAAA0000A1Z5"
-                  className="w-full pl-10 pr-4 py-2.5 bg-zinc-950/80 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all"
                 />
               </div>
             </div>
 
             {/* Phone */}
             <div>
-              <label className="block text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-2">
+              <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider mb-2">
                 Phone Number
               </label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-zinc-500">
+                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[var(--text-muted)]">
                   <Phone className="w-5 h-5" />
                 </span>
                 <input
@@ -355,18 +355,18 @@ export default function SettingsPage() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="e.g. +91 98765 43210"
-                  className="w-full pl-10 pr-4 py-2.5 bg-zinc-950/80 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all"
                 />
               </div>
             </div>
 
             {/* Terms & Conditions (formerly Tagline) */}
             <div>
-              <label className="block text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-2">
+              <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider mb-2">
                 Terms & Conditions
               </label>
               <div className="relative">
-                <span className="absolute top-3 left-3 flex items-start text-zinc-500">
+                <span className="absolute top-3 left-3 flex items-start text-[var(--text-muted)]">
                   <Tag className="w-5 h-5" />
                 </span>
                 <textarea
@@ -374,18 +374,18 @@ export default function SettingsPage() {
                   onChange={(e) => setTagline(e.target.value)}
                   placeholder="e.g. 1. Goods once sold cannot be taken back."
                   rows={4}
-                  className="w-full pl-10 pr-4 py-2.5 bg-zinc-950/80 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all resize-none"
+                  className="w-full pl-10 pr-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all resize-none"
                 />
               </div>
             </div>
 
             {/* Address */}
             <div className="md:col-span-2">
-              <label className="block text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-2">
+              <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider mb-2">
                 Business Address
               </label>
               <div className="relative">
-                <span className="absolute top-3 left-3 text-zinc-500">
+                <span className="absolute top-3 left-3 text-[var(--text-muted)]">
                   <MapPin className="w-5 h-5" />
                 </span>
                 <textarea
@@ -393,19 +393,19 @@ export default function SettingsPage() {
                   onChange={(e) => setAddress(e.target.value)}
                   rows={3}
                   placeholder="Complete business/office address..."
-                  className="w-full pl-10 pr-4 py-2.5 bg-zinc-950/80 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all"
                 />
               </div>
             </div>
           </div>
 
           {/* Bank Details & PAN section */}
-          <div className="pt-6 border-t border-zinc-800 space-y-4">
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Bank & PAN Details (GST Compliant)</h3>
+          <div className="pt-6 border-t border-[var(--border-default)] space-y-4">
+            <h3 className="text-sm font-semibold text-[var(--text-primary)] uppercase tracking-wider">Bank & PAN Details (GST Compliant)</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* PAN Number */}
               <div>
-                <label className="block text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-2">
+                <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider mb-2">
                   Company PAN Number
                 </label>
                 <input
@@ -413,13 +413,13 @@ export default function SettingsPage() {
                   value={panNumber}
                   onChange={(e) => setPanNumber(e.target.value)}
                   placeholder="e.g. ABKPH3349E"
-                  className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
+                  className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
                 />
               </div>
 
               {/* UPI ID */}
               <div>
-                <label className="block text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-2">
+                <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider mb-2">
                   UPI ID (For Billing QR Code)
                 </label>
                 <input
@@ -427,13 +427,13 @@ export default function SettingsPage() {
                   value={upiId}
                   onChange={(e) => setUpiId(e.target.value)}
                   placeholder="e.g. merchant@upi"
-                  className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
+                  className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
                 />
               </div>
 
               {/* Bank Name */}
               <div>
-                <label className="block text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-2">
+                <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider mb-2">
                   Bank Name
                 </label>
                 <input
@@ -441,13 +441,13 @@ export default function SettingsPage() {
                   value={bankName}
                   onChange={(e) => setBankName(e.target.value)}
                   placeholder="e.g. Bank of India"
-                  className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
+                  className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
                 />
               </div>
 
               {/* Account Number */}
               <div>
-                <label className="block text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-2">
+                <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider mb-2">
                   Account Number
                 </label>
                 <input
@@ -455,13 +455,13 @@ export default function SettingsPage() {
                   value={accountNumber}
                   onChange={(e) => setAccountNumber(e.target.value)}
                   placeholder="e.g. 840730150000015"
-                  className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
+                  className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
                 />
               </div>
 
               {/* IFSC Code */}
               <div>
-                <label className="block text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-2">
+                <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider mb-2">
                   IFSC Code
                 </label>
                 <input
@@ -469,13 +469,13 @@ export default function SettingsPage() {
                   value={ifscCode}
                   onChange={(e) => setIfscCode(e.target.value)}
                   placeholder="e.g. BKID0008407"
-                  className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
+                  className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
                 />
               </div>
 
               {/* Branch Name */}
               <div>
-                <label className="block text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-2">
+                <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider mb-2">
                   Branch Name
                 </label>
                 <input
@@ -483,21 +483,21 @@ export default function SettingsPage() {
                   value={branchName}
                   onChange={(e) => setBranchName(e.target.value)}
                   placeholder="e.g. JC Road"
-                  className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
+                  className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
                 />
               </div>
             </div>
           </div>
 
           {/* Logo & QR Upload */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-zinc-800">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-[var(--border-default)]">
             {/* Logo Upload */}
             <div className="space-y-3">
-              <label className="block text-zinc-300 text-xs font-semibold uppercase tracking-wider">
+              <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider">
                 Business Logo
               </label>
               <div className="flex items-center gap-4">
-                <div className="w-20 h-20 rounded-xl bg-zinc-950 border border-zinc-800 flex items-center justify-center overflow-hidden shrink-0">
+                <div className="w-20 h-20 rounded-xl bg-[var(--bg-input)] border border-[var(--border-default)] flex items-center justify-center overflow-hidden shrink-0">
                   {logoUrl ? (
                     <img src={logoUrl} alt="Logo" className="w-full h-full object-contain" />
                   ) : (
@@ -505,7 +505,7 @@ export default function SettingsPage() {
                   )}
                 </div>
                 <div className="flex-1">
-                  <label className="flex items-center justify-center gap-2 px-4 py-2.5 bg-zinc-850 hover:bg-zinc-800 border border-zinc-750 text-xs font-medium text-zinc-200 rounded-xl cursor-pointer transition-colors active:scale-[0.98]">
+                  <label className="flex items-center justify-center gap-2 px-4 py-2.5 bg-[var(--bg-surface-alt)] hover:bg-[var(--bg-surface-alt)] border border-zinc-750 text-xs font-medium text-[var(--text-secondary)] rounded-xl cursor-pointer transition-colors active:scale-[0.98]">
                     <Upload className="w-4 h-4" />
                     Upload Logo
                     <input
@@ -515,18 +515,18 @@ export default function SettingsPage() {
                       className="hidden"
                     />
                   </label>
-                  <p className="text-[10px] text-zinc-500 mt-2">Square PNG or JPG recommended. Max 2MB.</p>
+                  <p className="text-[10px] text-[var(--text-muted)] mt-2">Square PNG or JPG recommended. Max 2MB.</p>
                 </div>
               </div>
             </div>
 
             {/* QR Code Upload */}
             <div className="space-y-3">
-              <label className="block text-zinc-300 text-xs font-semibold uppercase tracking-wider">
+              <label className="block text-[var(--text-secondary)] text-xs font-semibold uppercase tracking-wider">
                 UPI / Payment QR Code
               </label>
               <div className="flex items-center gap-4">
-                <div className="w-20 h-20 rounded-xl bg-zinc-950 border border-zinc-800 flex items-center justify-center overflow-hidden shrink-0">
+                <div className="w-20 h-20 rounded-xl bg-[var(--bg-input)] border border-[var(--border-default)] flex items-center justify-center overflow-hidden shrink-0">
                   {qrUrl ? (
                     <img src={qrUrl} alt="QR Code" className="w-full h-full object-contain" />
                   ) : (
@@ -534,7 +534,7 @@ export default function SettingsPage() {
                   )}
                 </div>
                 <div className="flex-1">
-                  <label className="flex items-center justify-center gap-2 px-4 py-2.5 bg-zinc-850 hover:bg-zinc-800 border border-zinc-750 text-xs font-medium text-zinc-200 rounded-xl cursor-pointer transition-colors active:scale-[0.98]">
+                  <label className="flex items-center justify-center gap-2 px-4 py-2.5 bg-[var(--bg-surface-alt)] hover:bg-[var(--bg-surface-alt)] border border-zinc-750 text-xs font-medium text-[var(--text-secondary)] rounded-xl cursor-pointer transition-colors active:scale-[0.98]">
                     <Upload className="w-4 h-4" />
                     Upload QR Code
                     <input
@@ -544,18 +544,18 @@ export default function SettingsPage() {
                       className="hidden"
                     />
                   </label>
-                  <p className="text-[10px] text-zinc-500 mt-2">Upload your UPI QR image to print on invoices.</p>
+                  <p className="text-[10px] text-[var(--text-muted)] mt-2">Upload your UPI QR image to print on invoices.</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Submit */}
-          <div className="flex justify-end pt-4 border-t border-zinc-800">
+          <div className="flex justify-end pt-4 border-t border-[var(--border-default)]">
             <button
               type="submit"
               disabled={isLoading}
-              className="flex items-center gap-2 py-2.5 px-6 bg-violet-600 hover:bg-violet-500 text-white font-medium rounded-xl shadow-lg shadow-violet-600/10 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none transition-all cursor-pointer"
+              className="flex items-center gap-2 py-2.5 px-6 bg-violet-600 hover:bg-violet-500 text-[var(--text-primary)] font-medium rounded-xl shadow-lg shadow-violet-600/10 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none transition-all cursor-pointer"
             >
               {isLoading ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -572,15 +572,15 @@ export default function SettingsPage() {
       {activeTab === "team" && (
         <div className="space-y-6">
           {/* Add Team Member Card */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-            <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+          <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl p-6">
+            <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-4 flex items-center gap-2">
               <UserPlus className="w-5 h-5 text-violet-400" />
               Invite Team Member
             </h2>
 
             <form onSubmit={handleAddMember} className="flex flex-col sm:flex-row gap-4 items-end">
               <div className="flex-1 min-w-[200px]">
-                <label className="block text-zinc-400 text-xs font-medium mb-1.5">
+                <label className="block text-[var(--text-secondary)] text-xs font-medium mb-1.5">
                   Email Address
                 </label>
                 <input
@@ -589,19 +589,19 @@ export default function SettingsPage() {
                   onChange={(e) => setInviteEmail(e.target.value)}
                   required
                   placeholder="member@company.com"
-                  className="w-full px-4 py-2.5 bg-zinc-950/80 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
+                  className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
                 />
               </div>
 
               <div className="w-full sm:w-48">
-                <label className="block text-zinc-400 text-xs font-medium mb-1.5">
+                <label className="block text-[var(--text-secondary)] text-xs font-medium mb-1.5">
                   Access Role
                 </label>
                 {isSuperAdmin ? (
                   <select
                     value={inviteRole}
                     onChange={(e) => setInviteRole(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-zinc-950/80 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent transition-all text-sm"
                   >
                     <option value="owner">Owner (Full Permissions)</option>
                     <option value="admin">Admin (Manage settings & users)</option>
@@ -612,14 +612,14 @@ export default function SettingsPage() {
                     type="text"
                     readOnly
                     value="Billing Agent (Generate Invoices)"
-                    className="w-full px-4 py-2.5 bg-zinc-950/45 border border-zinc-800/80 rounded-xl text-zinc-400 focus:outline-none transition-all text-sm cursor-not-allowed"
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-secondary)] focus:outline-none transition-all text-sm cursor-not-allowed"
                   />
                 )}
               </div>
 
               <button
                 type="submit"
-                className="w-full sm:w-auto flex items-center justify-center gap-2 py-2.5 px-6 bg-violet-600 hover:bg-violet-500 text-white font-medium rounded-xl transition-all hover:shadow-lg active:scale-[0.98] cursor-pointer text-sm"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 py-2.5 px-6 bg-violet-600 hover:bg-violet-500 text-[var(--text-primary)] font-medium rounded-xl transition-all hover:shadow-lg active:scale-[0.98] cursor-pointer text-sm"
               >
                 Send Invite
               </button>
@@ -627,30 +627,30 @@ export default function SettingsPage() {
           </div>
 
           {/* Members Table */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden">
-            <div className="px-6 py-4 border-b border-zinc-800">
-              <h2 className="text-lg font-semibold text-white">Workspace Members</h2>
+          <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl overflow-hidden">
+            <div className="px-6 py-4 border-b border-[var(--border-default)]">
+              <h2 className="text-lg font-semibold text-[var(--text-primary)]">Workspace Members</h2>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm text-zinc-300">
-                <thead className="text-xs uppercase bg-zinc-950/40 text-zinc-500 border-b border-zinc-800">
+              <table className="w-full text-left text-sm text-[var(--text-secondary)]">
+                <thead className="text-xs uppercase bg-[var(--bg-input)] text-[var(--text-muted)] border-b border-[var(--border-default)]">
                   <tr>
                     <th className="px-6 py-3.5 font-semibold">User</th>
                     <th className="px-6 py-3.5 font-semibold">Role</th>
                     <th className="px-6 py-3.5 font-semibold text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-zinc-800/65">
+                <tbody className="divide-y divide-[var(--border-default)]">
                   {teamMembers.map((member) => (
-                    <tr key={member.id} className="hover:bg-zinc-800/10 transition-colors">
+                    <tr key={member.id} className="hover:bg-[var(--bg-surface-alt)] transition-colors">
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
                           <div className="w-8 h-8 rounded-full bg-violet-600/10 border border-violet-500/20 text-violet-400 flex items-center justify-center font-bold text-xs">
                             {member.profiles.full_name.charAt(0)}
                           </div>
                           <div>
-                            <p className="font-medium text-white">{member.profiles.full_name}</p>
-                            <p className="text-xs text-zinc-500">{member.profiles.email}</p>
+                            <p className="font-medium text-[var(--text-primary)]">{member.profiles.full_name}</p>
+                            <p className="text-xs text-[var(--text-muted)]">{member.profiles.email}</p>
                           </div>
                         </div>
                       </td>
@@ -660,7 +660,7 @@ export default function SettingsPage() {
                             ? "bg-violet-500/10 text-violet-400 border border-violet-500/20"
                             : member.role === "admin"
                             ? "bg-blue-500/10 text-blue-400 border border-blue-500/20"
-                            : "bg-zinc-500/10 text-zinc-400 border border-zinc-800"
+                            : "bg-zinc-500/10 text-[var(--text-secondary)] border border-[var(--border-default)]"
                         }`}>
                           <UserCheck className="w-3.5 h-3.5" />
                           {member.role === "owner" ? "Owner" : member.role === "admin" ? "Admin" : "Billing Agent"}
@@ -670,13 +670,13 @@ export default function SettingsPage() {
                         {member.role !== "owner" ? (
                           <button
                             onClick={() => handleRemoveMember(member.id)}
-                            className="p-1.5 rounded-lg text-zinc-500 hover:text-red-400 hover:bg-red-500/5 transition-all"
+                            className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-red-400 hover:bg-red-500/5 transition-all"
                             title="Remove Member"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
                         ) : (
-                          <span className="text-xs text-zinc-500 italic pr-2">Workspace Owner</span>
+                          <span className="text-xs text-[var(--text-muted)] italic pr-2">Workspace Owner</span>
                         )}
                       </td>
                     </tr>
@@ -690,3 +690,4 @@ export default function SettingsPage() {
     </div>
   );
 }
+

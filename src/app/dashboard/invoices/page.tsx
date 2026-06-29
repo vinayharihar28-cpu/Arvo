@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
@@ -420,12 +420,12 @@ export default function InvoicesPage() {
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-white">Billing & Invoices</h1>
-              <p className="text-zinc-400 text-sm mt-1">Generate professional tax invoices, calculate GST, and download PDFs</p>
+              <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)]">Billing & Invoices</h1>
+              <p className="text-[var(--text-secondary)] text-sm mt-1">Generate professional tax invoices, calculate GST, and download PDFs</p>
             </div>
             <button
               onClick={startNewInvoice}
-              className="flex items-center justify-center gap-2 py-2.5 px-5 bg-violet-600 hover:bg-violet-500 text-white text-xs font-semibold rounded-xl transition-all hover:shadow-lg active:scale-[0.98] cursor-pointer"
+              className="flex items-center justify-center gap-2 py-2.5 px-5 bg-violet-600 hover:bg-violet-500 text-[var(--text-primary)] text-xs font-semibold rounded-xl transition-all hover:shadow-lg active:scale-[0.98] cursor-pointer"
             >
               <Plus className="w-4.5 h-4.5" />
               New Invoice
@@ -433,9 +433,9 @@ export default function InvoicesPage() {
           </div>
 
           {/* Filters */}
-          <div className="flex flex-col md:flex-row gap-4 bg-zinc-900 border border-zinc-800 p-4 rounded-2xl">
+          <div className="flex flex-col md:flex-row gap-4 bg-[var(--bg-surface)] border border-[var(--border-default)] p-4 rounded-2xl">
             <div className="relative flex-1">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-zinc-500">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[var(--text-muted)]">
                 <Search className="w-4 h-4" />
               </span>
               <input
@@ -443,7 +443,7 @@ export default function InvoicesPage() {
                 placeholder="Search invoice number or customer name..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-zinc-950/80 border border-zinc-800/80 rounded-xl text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-violet-600 focus:border-transparent transition-all text-xs"
+                className="w-full pl-9 pr-4 py-2 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-secondary)] placeholder-[var(--text-muted)] focus:outline-none focus:ring-1 focus:ring-violet-600 focus:border-transparent transition-all text-xs"
               />
             </div>
             <div className="flex gap-2">
@@ -453,8 +453,8 @@ export default function InvoicesPage() {
                   onClick={() => setStatusFilter(status)}
                   className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all border cursor-pointer ${
                     statusFilter === status
-                      ? "bg-violet-600 border-violet-500 text-white"
-                      : "bg-zinc-950/50 border-zinc-800 text-zinc-400 hover:text-white"
+                      ? "bg-violet-600 border-violet-500 text-[var(--text-primary)]"
+                      : "bg-[var(--bg-input)] border-[var(--border-default)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                   }`}
                 >
                   {status}
@@ -464,10 +464,10 @@ export default function InvoicesPage() {
           </div>
 
           {/* Invoices List */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden">
+          <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm text-zinc-300">
-                <thead className="text-xs uppercase bg-zinc-950/40 text-zinc-500 border-b border-zinc-800">
+              <table className="w-full text-left text-sm text-[var(--text-secondary)]">
+                <thead className="text-xs uppercase bg-[var(--bg-input)] text-[var(--text-muted)] border-b border-[var(--border-default)]">
                   <tr>
                     <th className="px-6 py-4 font-semibold">Invoice No</th>
                     <th className="px-6 py-4 font-semibold">Customer</th>
@@ -477,24 +477,24 @@ export default function InvoicesPage() {
                     <th className="px-6 py-4 font-semibold text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-zinc-800/65">
+                <tbody className="divide-y divide-[var(--border-default)]">
                   {filteredInvoices.length > 0 ? (
                     filteredInvoices.map((inv) => (
-                      <tr key={inv.id} className="hover:bg-zinc-800/10 transition-colors">
+                      <tr key={inv.id} className="hover:bg-[var(--bg-surface-alt)] transition-colors">
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-2">
                             <FileText className="w-4.5 h-4.5 text-violet-400" />
-                            <span className="font-semibold text-white">{inv.invoice_number}</span>
+                            <span className="font-semibold text-[var(--text-primary)]">{inv.invoice_number}</span>
                           </div>
                         </td>
                         <td className="px-6 py-4">
                           <div>
-                            <p className="font-medium text-white">{inv.customers.name}</p>
-                            <p className="text-xs text-zinc-500">{inv.customers.email || ""}</p>
+                            <p className="font-medium text-[var(--text-primary)]">{inv.customers.name}</p>
+                            <p className="text-xs text-[var(--text-muted)]">{inv.customers.email || ""}</p>
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-xs text-zinc-400">{inv.issue_date}</td>
-                        <td className="px-6 py-4 font-semibold text-white">
+                        <td className="px-6 py-4 text-xs text-[var(--text-secondary)]">{inv.issue_date}</td>
+                        <td className="px-6 py-4 font-semibold text-[var(--text-primary)]">
                           ₹{inv.total_amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
                         </td>
                         <td className="px-6 py-4">
@@ -505,7 +505,7 @@ export default function InvoicesPage() {
                               ? "bg-blue-500/10 text-blue-400 border border-blue-500/20"
                               : inv.status === "void"
                               ? "bg-red-500/10 text-red-400 border border-red-500/20"
-                              : "bg-zinc-500/10 text-zinc-400 border border-zinc-800"
+                              : "bg-zinc-500/10 text-[var(--text-secondary)] border border-[var(--border-default)]"
                           }`}>
                             {inv.status}
                           </span>
@@ -514,21 +514,21 @@ export default function InvoicesPage() {
                           <div className="flex justify-end gap-1">
                             <button
                               onClick={() => handleDownloadPDF(inv)}
-                              className="p-1.5 rounded-lg text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all cursor-pointer"
+                              className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-alt)] transition-all cursor-pointer"
                               title="Download PDF"
                             >
                               <Download className="w-4 h-4" />
                             </button>
                             <button
                               onClick={() => startEditInvoice(inv)}
-                              className="p-1.5 rounded-lg text-zinc-500 hover:text-violet-400 hover:bg-violet-500/10 transition-all cursor-pointer"
+                              className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-violet-400 hover:bg-violet-500/10 transition-all cursor-pointer"
                               title="Edit Invoice"
                             >
                               <Edit2 className="w-4 h-4" />
                             </button>
                             <button
                               onClick={() => openViewInvoice(inv)}
-                              className="p-1.5 rounded-lg text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all cursor-pointer"
+                              className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-alt)] transition-all cursor-pointer"
                               title="View Details"
                             >
                               <ChevronRight className="w-4.5 h-4.5" />
@@ -539,7 +539,7 @@ export default function InvoicesPage() {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan={6} className="px-6 py-12 text-center text-zinc-500 text-xs italic">
+                      <td colSpan={6} className="px-6 py-12 text-center text-[var(--text-muted)] text-xs italic">
                         No invoices found. Generate your first bill!
                       </td>
                     </tr>
@@ -559,15 +559,15 @@ export default function InvoicesPage() {
             <button
               type="button"
               onClick={() => { setEditingInvoiceId(null); setViewMode("list"); }}
-              className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+              className="p-2 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-default)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-white">
+              <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)]">
                 {viewMode === "edit" ? "Edit Invoice" : "Create Invoice"}
               </h1>
-              <p className="text-zinc-400 text-sm mt-1">Configure invoice details, select products, and adjust tax rates</p>
+              <p className="text-[var(--text-secondary)] text-sm mt-1">Configure invoice details, select products, and adjust tax rates</p>
             </div>
           </div>
 
@@ -575,30 +575,30 @@ export default function InvoicesPage() {
             {/* Left/Middle Column - Details and Products */}
             <div className="lg:col-span-2 space-y-6">
               {/* Core Details Card */}
-              <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl p-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Invoice Number */}
                 <div>
-                  <label className="block text-zinc-400 text-xs font-medium mb-1.5">Invoice Number</label>
+                  <label className="block text-[var(--text-secondary)] text-xs font-medium mb-1.5">Invoice Number</label>
                   <input
                     type="text"
                     required
                     value={invNum}
                     onChange={(e) => setInvNum(e.target.value)}
                     placeholder="INV-XXXX"
-                    className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-1 focus:ring-violet-600 text-sm"
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-1 focus:ring-violet-600 text-sm"
                   />
                 </div>
 
                 {/* Customer Selection */}
                 <div>
-                  <label className="block text-zinc-400 text-xs font-medium mb-1.5 flex items-center gap-1">
+                  <label className="block text-[var(--text-secondary)] text-xs font-medium mb-1.5 flex items-center gap-1">
                     <Users className="w-3.5 h-3.5" /> Customer / Client
                   </label>
                   <select
                     value={invCustomerId}
                     onChange={(e) => setInvCustomerId(e.target.value)}
                     required
-                    className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-1 focus:ring-violet-600 text-sm"
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-1 focus:ring-violet-600 text-sm"
                   >
                     <option value="">Select a customer...</option>
                     {customers.map((c) => (
@@ -611,7 +611,7 @@ export default function InvoicesPage() {
 
                 {/* Dates */}
                 <div>
-                  <label className="block text-zinc-400 text-xs font-medium mb-1.5 flex items-center gap-1">
+                  <label className="block text-[var(--text-secondary)] text-xs font-medium mb-1.5 flex items-center gap-1">
                     <Calendar className="w-3.5 h-3.5" /> Issue Date
                   </label>
                   <input
@@ -619,12 +619,12 @@ export default function InvoicesPage() {
                     required
                     value={invIssueDate}
                     onChange={(e) => setInvIssueDate(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-1 focus:ring-violet-600 text-sm"
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-1 focus:ring-violet-600 text-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-zinc-400 text-xs font-medium mb-1.5 flex items-center gap-1">
+                  <label className="block text-[var(--text-secondary)] text-xs font-medium mb-1.5 flex items-center gap-1">
                     <Calendar className="w-3.5 h-3.5" /> Due Date
                   </label>
                   <input
@@ -632,15 +632,15 @@ export default function InvoicesPage() {
                     required
                     value={invDueDate}
                     onChange={(e) => setInvDueDate(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-1 focus:ring-violet-600 text-sm"
+                    className="w-full px-4 py-2.5 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:ring-1 focus:ring-violet-600 text-sm"
                   />
                 </div>
               </div>
 
               {/* Items Card */}
-              <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 space-y-4">
-                <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
-                  <h3 className="text-base font-semibold text-white">Invoice Items</h3>
+              <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl p-6 space-y-4">
+                <div className="flex items-center justify-between border-b border-[var(--border-default)] pb-3">
+                  <h3 className="text-base font-semibold text-[var(--text-primary)]">Invoice Items</h3>
                   <button
                     type="button"
                     onClick={addInvoiceItemRow}
@@ -654,13 +654,13 @@ export default function InvoicesPage() {
                 {/* Dynamic Item list */}
                 <div className="space-y-6">
                   {invItems.map((item, index) => (
-                    <div key={index} className="space-y-3 p-4 bg-zinc-950/45 border border-zinc-800/80 rounded-2xl relative">
+                    <div key={index} className="space-y-3 p-4 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-2xl relative">
                       {/* Remove Row Button */}
                       {invItems.length > 1 && (
                         <button
                           type="button"
                           onClick={() => removeInvoiceItemRow(index)}
-                          className="absolute top-3 right-3 text-zinc-600 hover:text-red-400 p-1 rounded-lg transition-colors cursor-pointer"
+                          className="absolute top-3 right-3 text-[var(--text-muted)] hover:text-red-400 p-1 rounded-lg transition-colors cursor-pointer"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -670,13 +670,13 @@ export default function InvoicesPage() {
                       <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 pt-2">
                         {/* Product Selector */}
                         <div className="sm:col-span-3">
-                          <label className="block text-zinc-500 text-[10px] uppercase font-semibold tracking-wider mb-1">
+                          <label className="block text-[var(--text-muted)] text-[10px] uppercase font-semibold tracking-wider mb-1">
                             Fetch Product
                           </label>
                           <select
                             value={item.product_id}
                             onChange={(e) => handleProductSelect(index, e.target.value)}
-                            className="w-full px-3 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-white text-xs focus:outline-none focus:ring-1 focus:ring-violet-600"
+                            className="w-full px-3 py-2 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-lg text-[var(--text-primary)] text-xs focus:outline-none focus:ring-1 focus:ring-violet-600"
                           >
                             <option value="">Choose item...</option>
                             {products.map((p) => (
@@ -689,7 +689,7 @@ export default function InvoicesPage() {
 
                         {/* Item Name Input (if customizing manually) */}
                         <div className="sm:col-span-3">
-                          <label className="block text-zinc-500 text-[10px] uppercase font-semibold tracking-wider mb-1">
+                          <label className="block text-[var(--text-muted)] text-[10px] uppercase font-semibold tracking-wider mb-1">
                             Item Name
                           </label>
                           <input
@@ -698,13 +698,13 @@ export default function InvoicesPage() {
                             placeholder="e.g. Flight Booking"
                             value={item.name}
                             onChange={(e) => handleItemChange(index, "name", e.target.value)}
-                            className="w-full px-3 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-white text-xs focus:outline-none focus:ring-1 focus:ring-violet-600"
+                            className="w-full px-3 py-2 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-lg text-[var(--text-primary)] text-xs focus:outline-none focus:ring-1 focus:ring-violet-600"
                           />
                         </div>
 
                         {/* Qty */}
                         <div className="sm:col-span-2">
-                          <label className="block text-zinc-500 text-[10px] uppercase font-semibold tracking-wider mb-1">
+                          <label className="block text-[var(--text-muted)] text-[10px] uppercase font-semibold tracking-wider mb-1">
                             Qty
                           </label>
                           <input
@@ -714,13 +714,13 @@ export default function InvoicesPage() {
                             step="any"
                             value={item.quantity === 0 ? "" : item.quantity}
                             onChange={(e) => handleItemChange(index, "quantity", e.target.value)}
-                            className="w-full px-3 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-white text-xs focus:outline-none focus:ring-1 focus:ring-violet-600 text-center"
+                            className="w-full px-3 py-2 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-lg text-[var(--text-primary)] text-xs focus:outline-none focus:ring-1 focus:ring-violet-600 text-center"
                           />
                         </div>
 
                         {/* Unit Price */}
                         <div className="sm:col-span-2">
-                          <label className="block text-zinc-500 text-[10px] uppercase font-semibold tracking-wider mb-1">
+                          <label className="block text-[var(--text-muted)] text-[10px] uppercase font-semibold tracking-wider mb-1">
                             Unit Price (₹)
                           </label>
                           <input
@@ -729,19 +729,19 @@ export default function InvoicesPage() {
                             step="any"
                             value={item.unit_price === 0 ? "" : item.unit_price}
                             onChange={(e) => handleItemChange(index, "unit_price", e.target.value)}
-                            className="w-full px-3 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-white text-xs focus:outline-none focus:ring-1 focus:ring-violet-600 text-right"
+                            className="w-full px-3 py-2 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-lg text-[var(--text-primary)] text-xs focus:outline-none focus:ring-1 focus:ring-violet-600 text-right"
                           />
                         </div>
 
                         {/* GST Percent (Select Override) */}
                         <div className="sm:col-span-2">
-                          <label className="block text-zinc-500 text-[10px] uppercase font-semibold tracking-wider mb-1">
+                          <label className="block text-[var(--text-muted)] text-[10px] uppercase font-semibold tracking-wider mb-1">
                             GST %
                           </label>
                           <select
                             value={item.gst_rate}
                             onChange={(e) => handleItemChange(index, "gst_rate", e.target.value)}
-                            className="w-full px-2 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-white text-xs focus:outline-none focus:ring-1 focus:ring-violet-600"
+                            className="w-full px-2 py-2 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-lg text-[var(--text-primary)] text-xs focus:outline-none focus:ring-1 focus:ring-violet-600"
                           >
                             <option value="0">0%</option>
                             <option value="5">5%</option>
@@ -754,7 +754,7 @@ export default function InvoicesPage() {
 
                       {/* Description Input (Displays underneath catalog name) */}
                       <div className="space-y-1.5 pt-1.5">
-                        <label className="block text-zinc-500 text-[10px] uppercase font-semibold tracking-wider">
+                        <label className="block text-[var(--text-muted)] text-[10px] uppercase font-semibold tracking-wider">
                           Description (Displays below product/service in PDF)
                         </label>
                         <textarea
@@ -762,14 +762,14 @@ export default function InvoicesPage() {
                           placeholder="Include package details, sightseeing itineraries, room types, flight schedules..."
                           value={item.description}
                           onChange={(e) => handleItemChange(index, "description", e.target.value)}
-                          className="w-full px-3 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-white text-xs focus:outline-none focus:ring-1 focus:ring-violet-600"
+                          className="w-full px-3 py-2 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-lg text-[var(--text-primary)] text-xs focus:outline-none focus:ring-1 focus:ring-violet-600"
                         />
                       </div>
 
                       {/* Math Summary for row */}
-                      <div className="flex justify-end gap-6 text-xs text-zinc-500 font-medium pt-2 border-t border-zinc-900/60">
+                      <div className="flex justify-end gap-6 text-xs text-[var(--text-muted)] font-medium pt-2 border-t border-[var(--border-default)]">
                         <span>
-                          GST: <strong className="text-zinc-300">₹{item.gst_amount.toFixed(2)}</strong>
+                          GST: <strong className="text-[var(--text-secondary)]">₹{item.gst_amount.toFixed(2)}</strong>
                         </span>
                         <span>
                           Total: <strong className="text-violet-400">₹{item.total.toFixed(2)}</strong>
@@ -784,39 +784,39 @@ export default function InvoicesPage() {
             {/* Right Column - Review & Publish */}
             <div className="space-y-6">
               {/* Total Calculation Card */}
-              <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 space-y-4">
-                <h3 className="text-base font-semibold text-white border-b border-zinc-800 pb-2">
+              <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl p-6 space-y-4">
+                <h3 className="text-base font-semibold text-[var(--text-primary)] border-b border-[var(--border-default)] pb-2">
                   Invoice Summary
                 </h3>
 
-                <div className="space-y-3 text-sm text-zinc-400">
+                <div className="space-y-3 text-sm text-[var(--text-secondary)]">
                   <div className="flex justify-between">
                     <span>Subtotal:</span>
-                    <span className="font-semibold text-zinc-200">
+                    <span className="font-semibold text-[var(--text-secondary)]">
                       ₹{invSubtotal.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
                     </span>
                   </div>
                   <div className="flex justify-between">
                     <span>Total GST:</span>
-                    <span className="font-semibold text-zinc-200">
+                    <span className="font-semibold text-[var(--text-secondary)]">
                       ₹{invGstTotal.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
                     </span>
                   </div>
 
-                  <div className="border-t border-zinc-800 pt-3 flex justify-between text-base font-bold">
-                    <span className="text-white">Net Bill:</span>
+                  <div className="border-t border-[var(--border-default)] pt-3 flex justify-between text-base font-bold">
+                    <span className="text-[var(--text-primary)]">Net Bill:</span>
                     <span className="text-violet-400">
                       ₹{invNetTotal.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
                     </span>
                   </div>
                 </div>
 
-                <div className="pt-2 border-t border-zinc-800">
-                  <label className="block text-zinc-400 text-xs font-medium mb-1.5">Invoice Status</label>
+                <div className="pt-2 border-t border-[var(--border-default)]">
+                  <label className="block text-[var(--text-secondary)] text-xs font-medium mb-1.5">Invoice Status</label>
                   <select
                     value={invStatus}
                     onChange={(e) => setInvStatus(e.target.value as Invoice["status"])}
-                    className="w-full px-3 py-2 bg-zinc-950 border border-zinc-800 rounded-xl text-white text-xs focus:outline-none focus:ring-1 focus:ring-violet-600"
+                    className="w-full px-3 py-2 bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl text-[var(--text-primary)] text-xs focus:outline-none focus:ring-1 focus:ring-violet-600"
                   >
                     <option value="draft">Draft (Save only)</option>
                     <option value="sent">Sent (Unpaid)</option>
@@ -828,7 +828,7 @@ export default function InvoicesPage() {
                 <div className="flex flex-col gap-2 pt-4">
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl transition-all shadow-md shadow-violet-600/10 cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-violet-600 hover:bg-violet-500 text-[var(--text-primary)] font-semibold rounded-xl transition-all shadow-md shadow-violet-600/10 cursor-pointer"
                   >
                     <Save className="w-4.5 h-4.5" />
                     {viewMode === "edit" ? "Update Invoice" : "Save & Generate"}
@@ -836,7 +836,7 @@ export default function InvoicesPage() {
                   <button
                     type="button"
                     onClick={() => setViewMode("list")}
-                    className="w-full py-2.5 px-4 bg-zinc-950 border border-zinc-800 hover:bg-zinc-900/60 text-zinc-400 text-xs rounded-xl font-medium transition-all cursor-pointer"
+                    className="w-full py-2.5 px-4 bg-[var(--bg-input)] border border-[var(--border-default)] hover:bg-[var(--bg-surface)]/60 text-[var(--text-secondary)] text-xs rounded-xl font-medium transition-all cursor-pointer"
                   >
                     Cancel
                   </button>
@@ -857,7 +857,7 @@ export default function InvoicesPage() {
                 setSelectedInvoice(null);
                 setViewMode("list");
               }}
-              className="flex items-center gap-2 py-2 px-4 bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white rounded-xl transition-colors cursor-pointer text-xs font-semibold"
+              className="flex items-center gap-2 py-2 px-4 bg-[var(--bg-surface)] border border-[var(--border-default)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] rounded-xl transition-colors cursor-pointer text-xs font-semibold"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to List
@@ -866,7 +866,7 @@ export default function InvoicesPage() {
             <div className="flex gap-2">
               <button
                 onClick={() => handleDownloadPDF(selectedInvoice)}
-                className="flex items-center gap-2 py-2 px-4 bg-violet-600 hover:bg-violet-500 text-white rounded-xl transition-colors cursor-pointer text-xs font-semibold"
+                className="flex items-center gap-2 py-2 px-4 bg-violet-600 hover:bg-violet-500 text-[var(--text-primary)] rounded-xl transition-colors cursor-pointer text-xs font-semibold"
               >
                 <Download className="w-4 h-4" />
                 Download PDF
@@ -875,32 +875,32 @@ export default function InvoicesPage() {
           </div>
 
           {/* Clean Glass Card Preview */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 sm:p-10 shadow-2xl relative space-y-8 overflow-hidden text-sm">
+          <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-3xl p-8 sm:p-10 shadow-2xl relative space-y-8 overflow-hidden text-sm">
             {/* Top Logo and Invoice ID */}
-            <div className="flex flex-col sm:flex-row justify-between items-start gap-4 border-b border-zinc-800 pb-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start gap-4 border-b border-[var(--border-default)] pb-6">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-violet-600 flex items-center justify-center font-bold text-white text-xs">
+                  <div className="w-7 h-7 rounded-lg bg-violet-600 flex items-center justify-center font-bold text-[var(--text-primary)] text-xs">
                     A
                   </div>
-                  <span className="font-bold text-xl text-white">{orgDetails.name}</span>
+                  <span className="font-bold text-xl text-[var(--text-primary)]">{orgDetails.name}</span>
                 </div>
-                <p className="text-zinc-500 text-xs italic">{orgDetails.tagline}</p>
+                <p className="text-[var(--text-muted)] text-xs italic">{orgDetails.tagline}</p>
               </div>
 
               <div className="text-right sm:text-right">
                 <h2 className="text-2xl font-bold text-violet-400">TAX INVOICE</h2>
-                <p className="text-zinc-400 font-semibold mt-1">Invoice: {selectedInvoice.invoice_number}</p>
-                <p className="text-zinc-500 text-xs mt-1">Issued: {selectedInvoice.issue_date}</p>
+                <p className="text-[var(--text-secondary)] font-semibold mt-1">Invoice: {selectedInvoice.invoice_number}</p>
+                <p className="text-[var(--text-muted)] text-xs mt-1">Issued: {selectedInvoice.issue_date}</p>
               </div>
             </div>
 
             {/* From / To Meta Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-b border-zinc-800 pb-6 text-zinc-400">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-b border-[var(--border-default)] pb-6 text-[var(--text-secondary)]">
               {/* From Company */}
               <div className="space-y-1.5">
-                <h4 className="text-zinc-300 font-bold uppercase text-xs tracking-wider">From</h4>
-                <p className="font-semibold text-white">{orgDetails.name}</p>
+                <h4 className="text-[var(--text-secondary)] font-bold uppercase text-xs tracking-wider">From</h4>
+                <p className="font-semibold text-[var(--text-primary)]">{orgDetails.name}</p>
                 <p className="text-xs leading-relaxed max-w-xs">{orgDetails.address}</p>
                 <p className="text-xs">Ph: {orgDetails.phone}</p>
                 <p className="text-xs font-mono font-bold text-violet-400">GSTIN: {orgDetails.gst_number}</p>
@@ -908,8 +908,8 @@ export default function InvoicesPage() {
 
               {/* To Customer */}
               <div className="space-y-1.5">
-                <h4 className="text-zinc-300 font-bold uppercase text-xs tracking-wider">Bill To</h4>
-                <p className="font-semibold text-white">{selectedInvoice.customers.name}</p>
+                <h4 className="text-[var(--text-secondary)] font-bold uppercase text-xs tracking-wider">Bill To</h4>
+                <p className="font-semibold text-[var(--text-primary)]">{selectedInvoice.customers.name}</p>
                 <p className="text-xs leading-relaxed max-w-xs">{selectedInvoice.customers.address || "N/A"}</p>
                 <p className="text-xs">Ph: {selectedInvoice.customers.phone || "N/A"}</p>
                 {selectedInvoice.customers.gst_number && (
@@ -922,10 +922,10 @@ export default function InvoicesPage() {
 
             {/* Invoice Items Table Preview */}
             <div className="space-y-3">
-              <h4 className="text-zinc-300 font-bold uppercase text-xs tracking-wider">Bill Items</h4>
-              <div className="overflow-x-auto border border-zinc-800 rounded-xl">
+              <h4 className="text-[var(--text-secondary)] font-bold uppercase text-xs tracking-wider">Bill Items</h4>
+              <div className="overflow-x-auto border border-[var(--border-default)] rounded-xl">
                 <table className="w-full text-left text-xs">
-                  <thead className="bg-zinc-950/40 text-zinc-500 border-b border-zinc-800 uppercase font-semibold text-[10px]">
+                  <thead className="bg-[var(--bg-input)] text-[var(--text-muted)] border-b border-[var(--border-default)] uppercase font-semibold text-[10px]">
                     <tr>
                       <th className="px-4 py-3">Description</th>
                       <th className="px-4 py-3 text-center">Qty</th>
@@ -935,12 +935,12 @@ export default function InvoicesPage() {
                       <th className="px-4 py-3 text-right">Total</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-zinc-800/60 text-zinc-300">
+                  <tbody className="divide-y divide-[var(--border-default)] text-[var(--text-secondary)]">
                     {selectedInvoice.items?.map((item, idx) => (
-                      <tr key={idx} className="hover:bg-zinc-800/10 transition-colors">
+                      <tr key={idx} className="hover:bg-[var(--bg-surface-alt)] transition-colors">
                         <td className="px-4 py-3.5">
-                          <p className="font-semibold text-white">{item.name}</p>
-                          <p className="text-[11px] text-zinc-500 max-w-sm mt-0.5 whitespace-pre-line leading-relaxed">
+                          <p className="font-semibold text-[var(--text-primary)]">{item.name}</p>
+                          <p className="text-[11px] text-[var(--text-muted)] max-w-sm mt-0.5 whitespace-pre-line leading-relaxed">
                             {item.description}
                           </p>
                         </td>
@@ -948,7 +948,7 @@ export default function InvoicesPage() {
                         <td className="px-4 py-3.5 text-right">₹{item.unit_price.toFixed(2)}</td>
                         <td className="px-4 py-3.5 text-center text-indigo-400">{item.gst_rate}%</td>
                         <td className="px-4 py-3.5 text-right">₹{item.gst_amount.toFixed(2)}</td>
-                        <td className="px-4 py-3.5 text-right font-semibold text-white">₹{item.total.toFixed(2)}</td>
+                        <td className="px-4 py-3.5 text-right font-semibold text-[var(--text-primary)]">₹{item.total.toFixed(2)}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -957,7 +957,7 @@ export default function InvoicesPage() {
             </div>
 
             {/* Totals Section */}
-            <div className="flex flex-col sm:flex-row justify-between items-end pt-4 border-t border-zinc-800">
+            <div className="flex flex-col sm:flex-row justify-between items-end pt-4 border-t border-[var(--border-default)]">
               {/* Status Banner */}
               <div className="mb-4 sm:mb-0">
                 <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase border ${
@@ -970,17 +970,17 @@ export default function InvoicesPage() {
               </div>
 
               {/* Totals Box */}
-              <div className="w-full sm:w-64 space-y-2 text-zinc-400 text-xs">
+              <div className="w-full sm:w-64 space-y-2 text-[var(--text-secondary)] text-xs">
                 <div className="flex justify-between">
                   <span>Subtotal:</span>
-                  <span className="font-medium text-white">₹{selectedInvoice.subtotal.toFixed(2)}</span>
+                  <span className="font-medium text-[var(--text-primary)]">₹{selectedInvoice.subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Total Tax (GST):</span>
-                  <span className="font-medium text-white">₹{selectedInvoice.gst_amount.toFixed(2)}</span>
+                  <span className="font-medium text-[var(--text-primary)]">₹{selectedInvoice.gst_amount.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-sm font-bold border-t border-zinc-800 pt-2">
-                  <span className="text-white">Net Payable:</span>
+                <div className="flex justify-between text-sm font-bold border-t border-[var(--border-default)] pt-2">
+                  <span className="text-[var(--text-primary)]">Net Payable:</span>
                   <span className="text-violet-400">₹{selectedInvoice.total_amount.toFixed(2)}</span>
                 </div>
               </div>
@@ -991,3 +991,4 @@ export default function InvoicesPage() {
     </div>
   );
 }
+
